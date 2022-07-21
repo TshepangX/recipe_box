@@ -1,0 +1,50 @@
+h3 
+  = link_to "Home", root_path
+
+h1 
+  = @recipe.title
+
+h3 Ingredients
+ul 
+  div 
+    -@recipe.ingredients.each do |ingredient|
+        li 
+          =  ingredient.name 
+  br
+h3 Instructions
+li 
+  = @recipe.instruction
+  br
+h3 Tag 
+ul 
+  div
+    -@recipe.tags.each do |tag|
+        li 
+          = link_to tag.tagName, tag
+
+= form_with url: recipe_ratings_url(@recipe) do |form|
+  br
+    div 
+      = form.label :score
+    div 
+      = form.select :score, (0..5)
+    div 
+      = form.submit 
+  br
+    
+h3 
+  = "This recipe's ratings"
+  ul 
+    -@recipe.ratings.each do |rating|
+      li 
+        = rating.score 
+      div 
+        = link_to "Delete Rating",[rating.recipe, rating], method: :delete
+  
+h3 Average Rating 
+= @score
+br    
+div 
+  = link_to "Edit Recipe", edit_recipe_path
+div 
+  = link_to "Delete Recipe", recipe_path, method: :delete, data: {confirm: "Do you want to continue?"}

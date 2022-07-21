@@ -1,0 +1,12 @@
+h3 
+=link_to "Home", root_path 
+
+h1 Tags
+ul 
+  -@tags.each do |tag|
+    li 
+      =link_to tag.tagName, tag
+    br 
+li 
+  =link_to "New Tag", new_tag_path
+

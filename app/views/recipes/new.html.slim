@@ -1,0 +1,10 @@
+h3 
+  = link_to "Home", root_path
+
+h1 
+  = "New Recipe"
+
+h3
+  div
+     = render "form", recipe: @recipe 
+        
